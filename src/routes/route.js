@@ -70,4 +70,68 @@ router.post("/test-post-4", function(req, res) {
     res.send(  { msg: arr , status: true }  )
 })
 
+//you will be given an array of persons (1.e an array of objects)..each person will have a 
+//(name: String, age: Number, yatingStatus: true/false(Boolean)} take input in query param as votingAge..
+//and for all the people above that age, change votingStatus as true also return an array consisting of only
+// the person that can vote
+
+// WRITE A POST API TO THE ABOVE
+
+// take this as sample for array of persons: 
+let persons = [
+
+    {
+        nane: "PK",
+
+        age: 10, votingStatus: false
+    },
+
+    {
+        nane: "SK",
+
+        age: 20,
+
+        votingStatus: false
+    },
+
+    {
+        nane: "AA", age: 70,
+
+        votingStatus: false
+    },
+
+    {
+        nane: "SC",
+
+        age: 5, votingStatus: false
+    },
+
+    {
+        name: "HO",
+
+        age: 40,
+
+        votingStatus: false
+    }
+]
+
+router.post( '/personage' , function(req , res){
+
+let newage=req.query.age;
+
+
+
+for(let i=0;i<persons.length; i++){
+
+    if (persons[i].age>newage){
+persons[i].votingStatus=true
+
+    }
+}
+res.send(persons)
+
+})
+
+
+
 module.exports = router;
