@@ -3,7 +3,7 @@ const router = express.Router();
 // const UserModel= require("../models/userModel.js")
 const UserController= require("../controllers/userController")
 const BookController= require("../controllers/bookController")
-const commonMW = require ("../middlewares/commonMiddlewares")
+//const commonMW = require ("../middlewares/commonMiddlewares")
 
 router.get("/test-me", function (req, res) {
     res.send("My first ever api!")
@@ -22,6 +22,7 @@ router.get("/getUsersData", UserController.getUsersData)
 
 
 const mid1= function ( req, res, next) {
+//<<<<<<< HEAD
     console.log("Hi I am a middleware named Mid1")
     // logic
     let loggedIn = true
@@ -41,9 +42,37 @@ const mid1= function ( req, res, next) {
 // router.get('/profileDetails', mid1, UserController.profileDetails)
 // router.get('/friendList', mid1, UserController.friendList)
 // router.get('/changePassword', mid1, UserController.changePassword)
+//=======
+//     console.log ("inside GLOBAL MW");
+//     console.log("Hi I am a middleware named Mid1")
+//     // logic
+//     let loggedIn = false
 
-// router.get('/termsAndConditions',  UserController.termsAndConditions)
-// router.get('/register',  UserController.register)
+//     if (loggedIn== true) { 
+//         console.log( "OK LOGGED IS IS TRUE NOW")
+//         next ()
+//     }
+//     else {
+//         res.send ("Please login or register")
+//     }
+// }
+
+/*
+>>>>>>> 9e4c16d4ea1ae2e8bdde64eac93caf8467fd54bc
+
+*/
+
+// e.g. restricted and open-to-all API's can be handled like below now:
+router.get('/homePage', mid1, UserController.commonHandler)
+router.get('/profileDetails', mid1, UserController.commonHandler)
+router.get('/friendList', mid1, UserController.commonHandler)
+router.get('/changePassword', mid1, UserController.commonHandler)
+
+router.get('/termsAndConditions',  UserController.commonHandler)
+router.get('/register',  UserController.commonHandler, function(req, res){
+    console.log('This is last console statement')
+    res.send({status: true, msg: "Am ending the cycle."})
+})
 
 
 

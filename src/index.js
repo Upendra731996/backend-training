@@ -15,6 +15,7 @@ mongoose.connect("mongodb+srv://upendra:wvUNUF1FjJ02PCPH@cluster0.b8yrh4n.mongod
 .then( () => console.log("MongoDb is connected"))
 .catch ( err => console.log(err) )
 
+//<<<<<<< HEAD
 const time =moment()
 app.use ('/account',
     function (req, res, next) {
@@ -26,6 +27,15 @@ app.use ('/account',
        
   }
   );
+//=======
+// app.use (
+//     function (req, res, next) {
+//         console.log ("inside GLOBAL MW");
+//         next();
+//   }
+//   );
+  
+//>>>>>>> 9e4c16d4ea1ae2e8bdde64eac93caf8467fd54bc
 
 app.use('/account', function(req, res, next) {
     let timeStamp= moment().format("DD-MM-YYYY,HH:mm:ss")//new Date( )
