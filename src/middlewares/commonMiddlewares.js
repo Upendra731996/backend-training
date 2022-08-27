@@ -7,7 +7,25 @@ const mid1= function ( req, res, next) {
 
 const mid2= function ( req, res, next) {
     console.log("Hi I am a middleware named Mid2")
-    next()
+
+    let man = req.headers.isfreeappuser
+    console.log(man)
+    if(!man){
+        res.send({mas:"isfreeappuser is mandatry"})
+    }
+    else{
+        if(man==="true"){
+            req.body.isFreeAppUser=true
+        }
+        else if(man==="false"){
+            req.body.isFreeAppUser=false
+        }
+
+
+
+    next() 
+
+}
 }
 
 const mid3= function ( req, res, next) {
