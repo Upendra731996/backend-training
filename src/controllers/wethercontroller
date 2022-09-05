@@ -1,0 +1,46 @@
+const axios=require('axios')
+
+const londonwether=async function(req ,res){
+    try{
+    let result= await axios.get(' http://api.openweathermap.org/data/2.5/weather?q=London&appid=e1a64b7ac9ba2246b52f07f962e75b8a')
+let data=result.data
+res.status(200).send({msg:data})
+    }
+    catch(error){
+        res.status(500).send({msg:error.message})
+    }
+
+}
+const sorttemp= async function(req ,res){
+    try{
+  let  cities=  ["Bengaluru","Mumbai", "Delhi", "Kolkata", "Chennai", "London", "Moscow"]
+  let soertcity=[]
+  for(let i=0;i<cities.length;i++){
+    let obj={city:cities[i]}
+    let opt={method:'get',
+             url:` http://api.openweathermap.org/data/2.5/weather?q=${cities[i]}&appid=e1a64b7ac9ba2246b52f07f962e75b8a`}
+  
+  let result= await axios(opt)
+  obj.temp=result.data.main.temp
+  soertcity.push(obj)
+  }
+  let sort=soertcity.sort(function(a,b){return a.temp-b.temp})
+  res.status(200).send({data:sort})
+}
+catch(erro){
+    res.status(500).send({status:false,msg:erro.message});
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+module.exports.londonwether=londonwether;
+module.exports.sorttemp=sorttemp;
