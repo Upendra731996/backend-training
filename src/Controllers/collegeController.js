@@ -57,7 +57,8 @@ const getcollegeDetails = async function (req, res) {
         }
         let studentdetails = await InternModel.find({ collegeId: findcollege._id, isDeleted: false }).select({ _id: 1, name: 1, email: 1, mobile: 1 })
         if (studentdetails.length === 0) {
-            studentdetails.push("Don't have any intern in this college")
+          
+            return  res.status(404).send({status: false,msg:"Don't have any intern in this college"})
         }
 
         let data = {}
