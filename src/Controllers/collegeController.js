@@ -15,7 +15,7 @@ const isValid = function (value) {
 const createCollege = async function (req, res) {
     try {
         let data = req.body
-
+        let validurl= /\b(https?|ftp|file):\/\/[\-A-Za-z0-9+&@#\/%?=_|!:,.;]*[\-A-Za-z0-9+&@#\/%=_|]/
         if (!isValid(data)) {
             return res.status(400).send({ status: false, msg: "You have not provided any data" })
         }
@@ -23,7 +23,7 @@ const createCollege = async function (req, res) {
             return res.status(400).send({ status: false, msg: "Please provide name. it's mandatory" })
         } else {
             data.name = data.name.trim().split(" ").filter(word => word).join(" ")
-        }
+        } 
         let college = await collegeModel.findOne({ name: data.name })
         if (college) {
             return res.status(409).send({ status: false, msg: "This college name is already reserved, please provide different college name" })
@@ -36,8 +36,14 @@ const createCollege = async function (req, res) {
         if (!isValid(data.logoLink)) {
             return res.status(400).send({ status: false, msg: "Please provide logoLink. It's mandatory" })
         }
+        if (!validurl.test(data.logoLink)) {
+            return res.status(400).send({ status: false, msg: "please provide valid logolink" })
+        }
         let savedata = await collegeModel.create(data)
-        return res.status(201).send({ status: true, data: savedata })
+
+        const {name,fullName,logoLink,isDeleted} = savedata
+
+        return res.status(201).send({ status: true, data: {name,fullName,logoLink,isDeleted} })
     } catch (err) {
         return res.status(500).send({ status: false, error: err.message })
     }
