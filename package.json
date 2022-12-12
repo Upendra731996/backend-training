@@ -16,12 +16,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Harikesh9690/task-1.git"
+    "url": "https://github.com/Upendra731996/backend-training.git"
   },
   "author": "upendra",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Harikesh9690/task-1/issues"
+    "url": "https://github.com/Upendra731996/backend-training.git"
   },
-  "homepage": "https://github.com/Harikesh9690/task-1#readme"
+  "homepage": "https://github.com/Upendra731996/backend-training.git"
 }
