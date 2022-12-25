@@ -269,11 +269,7 @@ if(files.length>0){
         }
 
         //--------------------if we want to available sizes-------------------
-        // if (availableSizes) {
-        //     let size = ["S", "XS", "M", "X", "L", "XXL", "XL"];
-        //     if (!size.includes(availableSizes))
-        //         return res.status(400).send({ status: false, msg: "Invalid size,select from 'S','XS',M','X','L','XXL','XL'" });
-        // }
+        
 
 
 if(productData.availableSizes){

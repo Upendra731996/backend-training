@@ -164,7 +164,7 @@ const createUser = async (req, res) => {
     //  ===  ==================AWS==========================
 
     if (files.length==0) {
-        return res.status(400).send({ status: false, msg: "productImage is mandatory" })
+        return res.status(400).send({ status: false, msg: "profileImgUrl is mandatory" })
     }
 if(files.length>0){
     let profileImgUrl = await aws.uploadFile(files[0])

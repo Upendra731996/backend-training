@@ -36,9 +36,9 @@ router.delete('/products/:productId', productController.deleteProduct)
   
 // -------------------- for cart-------------------------
 
-router.post('/users/:userId/cart',authentication,authorization,cartController.CreateCart);
+router.post('/users/:userId/cart',cartController.CreateCart);
 
-router.put('/users/:userId/cart',authentication,authorization,cartController.updateCart);
+router.put('/users/:userId/cart',cartController.updateCart);
 
 router.get('/users/:userId/cart',authentication,authorization,cartController.getCart);
 
